@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application-configuration>
+  <setupStep>complete</setupStep>
+  <setupType>initial</setupType>
+  <buildNumber>0</buildNumber>
+  <properties>
+    <property name="bamboo.artifacts.directory">{{ bamboo_installation_directory }}/artifacts</property>
+    <property name="bamboo.config.directory">{{ bamboo_installation_directory }}/xml-data/configuration</property>
+    <property name="bamboo.project.directory">{{ bamboo_installation_directory }}/xml-data/builds</property>
+    <property name="buildWorkingDir">{{ bamboo_installation_directory }}/xml-data/build-dir</property>
+    <property name="daily.backup.dir">{{ bamboo_installation_directory }}/backups</property>
+    <property name="hibernate.c3p0.acquire_increment">1</property>
+    <property name="hibernate.c3p0.idle_test_period">100</property>
+    <property name="hibernate.c3p0.max_size">15</property>
+    <property name="hibernate.c3p0.max_statements">0</property>
+    <property name="hibernate.c3p0.min_size">0</property>
+    <property name="hibernate.c3p0.timeout">30</property>
+    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+    <property name="hibernate.connection.password">{{ bamboo_database.bamboo.password }}</property>
+    <property name="hibernate.connection.url">jdbc:postgresql://{{ bamboo_database.bamboo.host }}:{{ bamboo_database.bamboo.port }}/{{ bamboo_database.bamboo.name }}</property>
+    <property name="hibernate.connection.username">{{ bamboo_database.bamboo.username }}</property>
+    <property name="hibernate.dialect">net.sf.hibernate.dialect.PostgreSQLDialect</property>
+    <property name="hibernate.setup">true</property>
+    <property name="license.string">{{ bamboo_license_string }}</property>
+    <property name="lucene.index.dir">{{ bamboo_installation_directory }}/index</property>
+    <property name="webwork.multipart.saveDir">{{ bamboo_installation_directory }}/temp</property>
+  </properties>
+</application-configuration>

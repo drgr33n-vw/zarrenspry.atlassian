@@ -1,0 +1,105 @@
+# {{ ansible_managed }}
+
+#********************************************************************
+# Bamboo Service Wrapper Properties
+#
+#********************************************************************
+
+wrapper.app.parameter.1=com.atlassian.bamboo.server.Server
+
+# The Bamboo port number - this is the port number the Bamboo web server listens on.
+#
+wrapper.app.parameter.2={{ bamboo_webserver_port }}
+
+# The location of the Bamboo web application files
+#
+wrapper.app.parameter.3=../webapp
+
+# The webapp context path. Which must be of form / or /your-context
+#
+wrapper.app.parameter.4={{ bamboo_webapp_context_path }}
+
+# Specify which version of java you use to run Bamboo
+#
+wrapper.java.command={{ bamboo_installation_directory }}/jdk/bin/java
+
+wrapper.java.mainclass=org.tanukisoftware.wrapper.WrapperSimpleApp
+
+# Initial Java Heap Size (in MB)
+wrapper.java.initmemory={{ bamboo_java_heap_size.init }}
+
+# Maximum Java Heap Size (in MB)
+wrapper.java.maxmemory={{ bamboo_java_heap_size.max }}
+
+wrapper.java.classpath.1=../lib/*.jar
+wrapper.java.classpath.2=../lib
+wrapper.java.classpath.3=../webapp/WEB-INF/classes
+wrapper.java.classpath.4=../webapp/WEB-INF/lib/*.jar
+wrapper.java.library.path.1=../lib
+wrapper.java.additional.1=-Dorg.mortbay.xml.XmlParser.NotValidating=true
+wrapper.java.additional.2=-XX:MaxPermSize=256m
+wrapper.java.additional.3=-Djava.awt.headless=true
+
+wrapper.working.dir=.
+#********************************************************************
+# Wrapper Home Properties
+#********************************************************************
+wrapper.java.additional.4=-Dbamboo.home={{ bamboo_installation_directory }}
+
+{% if bamboo_jmxremote.enabled %}
+wrapper.java.additional.5=-Dcom.sun.management.jmxremote
+wrapper.java.additional.6=-Dcom.sun.management.jmxremote.port={{ bamboo_jmxremote.port }}
+wrapper.java.additional.7=-Dcom.sun.management.jmxremote.authenticate={{ bamboo_jmxremote.authenticate }}
+wrapper.java.additional.8=-Dcom.sun.management.jmxremote.ssl={{ bamboo_jmxremote.ssl }}
+wrapper.java.additional.9=-Dcom.sun.management.jmxremote.password.file={{ bamboo_jmxremote.password_file }}
+wrapper.java.additional.10=-Dwrapper.mbean.name="{{ bamboo_jmxremote.mbean_name }}"
+{% endif %}
+
+
+#********************************************************************
+# Wrapper Database Properties
+#********************************************************************
+
+#********************************************************************
+# Wrapper Logging Properties
+#********************************************************************
+
+wrapper.console.format={{ bamboo_logging_logfile.format }}
+wrapper.console.loglevel={{ bamboo_logging_logfile.loglevel }}
+wrapper.logfile={{ bamboo_logging_logfile.name }}
+wrapper.logfile.format={{ bamboo_logging_logfile.format }}
+wrapper.logfile.loglevel={{ bamboo_logging_logfile.loglevel }}
+wrapper.logfile.maxsize={{ bamboo_logging_logfile.maxsize }}
+wrapper.logfile.maxfiles={{ bamboo_logging_logfile.maxfiles }}
+wrapper.syslog.loglevel={{ bamboo_logging_syslog.loglevel }}
+
+#********************************************************************
+# Wrapper Windows Properties
+#********************************************************************
+# Title to use when running as a console
+wrapper.console.title={{ bamboo_console_title }}
+
+#********************************************************************
+# Wrapper Windows NT/2000/XP Service Properties
+#********************************************************************
+# WARNING - Do not modify any of these properties when an application
+#  using this configuration file has been installed as a service.
+#  Please uninstall the service before modifying this section.  The
+#  service can then be reinstalled.
+
+# Name of the service
+wrapper.ntservice.name=bamboo
+
+# Display name of the service
+wrapper.ntservice.displayname=Bamboo build server
+
+# Description of the service
+wrapper.ntservice.description=A Continuous Integration Server
+
+# Service dependencies.  Add dependencies as needed starting from 1
+wrapper.ntservice.dependency.1=
+
+# Mode in which the service is installed. AUTO_START or DEMAND_START
+wrapper.ntservice.starttype=AUTO_START
+
+# Allow the service to interact with the desktop.

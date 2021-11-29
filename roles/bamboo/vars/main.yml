@@ -1,0 +1,4 @@
+---
+bamboo_base_url: https://www.atlassian.com/software/bamboo/downloads/binary
+temurin_base_url: https://github.com/adoptium
+postgresql_java_base_url: https://jdbc.postgresql.org/download

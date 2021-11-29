@@ -1,0 +1,37 @@
+---
+namespace: zarrenspry
+name: atlassian
+version: 1.0.0
+readme: README.md
+authors:
+  - Zarren Spry <zarrenspry@gmail.com>
+
+description: A collection of roles to install Atlassian services
+license:
+  - MIT
+license_file: 'LICENSE'
+
+tags:
+  - atlassian
+  - bamboo
+
+dependencies:
+  community.general: ">=4.0.1"
+
+# The URL of the originating SCM repository
+repository: https://github.com/drgr33n-vw/zarrenspry.atlassian.git
+
+# The URL to any online docs
+documentation: https://github.com/drgr33n-vw/zarrenspry.atlassian.git
+
+# The URL to the homepage of the collection/project
+homepage: https://github.com/drgr33n-vw/zarrenspry.atlassian.git
+
+# The URL to the collection issue tracker
+issues: https://github.com/drgr33n-vw/zarrenspry.atlassian/issues
+
+build_ignore:
+  - .gitignore
+  - .idea
+  - Pipfile*
+

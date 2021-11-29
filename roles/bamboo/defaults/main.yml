@@ -1,0 +1,51 @@
+---
+bamboo_license_string: BLANK
+bamboo_version:
+  major: 1
+  minor: 2
+  patch: 4
+bamboo_system_user: bamboo
+bamboo_installation_directory: /opt/bamboo
+bamboo_database:
+  bamboo:
+    host: 127.0.0.1
+    port: 5432
+    name: bamboo
+    owner: bamboo
+    username: bamboo
+    password: password
+    enabled: true
+bamboo_locale: en_GB.UTF-8
+bamboo_webserver_port: 8085
+bamboo_webapp_context_path: /
+bamboo_java_heap_size:
+  init: 256
+  max: 512
+bamboo_jmxremote:
+  enabled: false
+  port: 4242
+  authenticate: true
+  ssl: false
+  password_file: conf/jmxremote.password
+  mbean_name: "wrapper:type=Java Service Wrapper Control"
+bamboo_logging_console:
+  format: PM
+  loglevel: INFO
+bamboo_logging_logfile:
+  name: "../logs/bamboo.log"
+  format: LPTM
+  loglevel: INFO
+  maxsize: 10m
+  maxfiles: 10
+bamboo_logging_syslog:
+  loglevel: INFO
+bamboo_console_title: Bamboo
+temurin_version:
+  major: 11
+  minor: 0
+  patch: 13
+  build: 8
+postgresql_java_version:
+  major: 42
+  minor: 3
+  patch: 1

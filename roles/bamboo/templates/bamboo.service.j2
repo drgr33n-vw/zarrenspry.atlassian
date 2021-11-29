@@ -1,0 +1,19 @@
+[Unit]
+Description=Atlassian Bamboo
+After=syslog.target network.target
+
+[Service]
+Type=forking
+PIDFile={{ bamboo_installation_directory }}/wrapper/bamboo.pid
+ExecStart={{ bamboo_installation_directory }}/wrapper/start-bamboo start
+ExecStop={{ bamboo_installation_directory }}/wrapper/start-bamboo stop
+SuccessExitStatus=143
+User={{ bamboo_system_user }}
+Group={{ bamboo_system_user }}
+UMask=0007
+RestartSec=10
+Restart=always
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
