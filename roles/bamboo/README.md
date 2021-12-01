@@ -169,7 +169,7 @@ complete.
 - Description: The context path the application is served over.
 
 ### Temurin / OpenJDK
-# temurin_version
+#### temurin_version
 - major
   - Default: 11
   - Description: OpenJDK major version
