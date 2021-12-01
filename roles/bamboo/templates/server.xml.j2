@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Server port="{{ bamboo_tomcat_management_port }}"
+        shutdown="SHUTDOWN">
+
+  <Listener className="org.apache.catalina.core.AprLifecycleListener"
+            SSLEngine="on"/>
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+
+  <Service name="Catalina">
+
+    <Connector port="{{ bamboo_tomcat_port }}"
+               maxThreads="{{ bamboo_tomcat_maxthreads }}"
+               minSpareThreads="{{ bamboo_tomcat_maxthreads }}"
+               connectionTimeout="{{ bamboo_tomcat_connection_timeout }}"
+               enableLookups="{{ bamboo_tomcat_enable_lookups }}"
+               protocol="{{ bamboo_tomcat_protocol }}"
+               acceptCount="{{ bamboo_tomcat_acceptcount }}"
+               secure="{{ bamboo_tomcat_secure }}"
+               scheme="{{ bamboo_tomcat_scheme }}"
+               proxyName="{{ bamboo_tomcat_proxy_name }}"
+               proxyPort="{{ bamboo_tomcat_proxy_port }}"
+               {% if bamboo_tomcat_address | length > 0 %}
+               address="{{ bamboo_tomcat_address }}"
+               {% endif %}
+               {% if bamboo_tomcat_encryption_key %}
+               bambooEncryptionKey="{{ bamboo_tomcat_encryption_key }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.enabled %}
+               SSLEnabled="true"
+               sslProtocol="{{ bamboo_tomcat_ssl.protocol }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.cert_file | length > 0 %}
+               SSLCertificateFile="{{ bamboo_tomcat_ssl.cert_file }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.key_file | length > 0 %}
+               SSLCertificateKeyFile="{{ bamboo_tomcat_ssl.key_file }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.keystore_password | length > 0 %}
+               SSLPassword="{{ bamboo_tomcat_ssl.keystore_password }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.keystore_file | length > 0 %}
+               keystoreFile="{{ bamboo_tomcat_ssl.keystore_file }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.keystore_password %}
+               keystorePass="{{ bamboo_tomcat_ssl.keystore_password }}"
+               {% endif %}
+               {% if bamboo_tomcat_ssl.key_password %}
+               keyPass="{{ bamboo_tomcat_ssl.key_password }}"
+               {% endif %}
+               {% if bamboo_tomcat_client_auth | length > 0 %}
+               clientAuth="{{ bamboo_tomcat_client_auth }}"
+               {% endif %}
+               {% if bamboo_truststore.file | length > 0 %}
+               truststoreFile="{{ bamboo_truststore.file }}"
+               {% endif %}
+               {% if bamboo_truststore.password | length > 0 %}
+               truststorePass="{{ bamboo_truststore.password }}"
+               {% endif %}
+               relaxedPathChars="[]|"
+               relaxedQueryChars="[]|{}^\`&quot;&lt;&gt;"
+               bindOnInit="false"
+               maxHttpHeaderSize="8192"
+               useBodyEncodingForURI="true"
+               disableUploadTimeout="true">
+      <UpgradeProtocol className="org.apache.coyote.http2.Http2Protocol" />
+    </Connector>
+
+    <Engine name="Catalina"
+            defaultHost="localhost">
+      <Host name="localhost"
+            appBase="webapps"
+            unpackWARs="true"
+            autoDeploy="true">
+
+        <Context path="{{ bamboo_tomcat_contextpath }}"
+                 docBase="${catalina.home}/atlassian-bamboo"
+                 reloadable="false"
+                 useHttpOnly="true">
+          <Manager pathname=""/>
+        </Context>
+
+      </Host>
+      <Valve className="org.apache.catalina.valves.AccessLogValve"
+             pattern="%a %t &quot;%m %U%q %H&quot; %s %b %D &quot;%{Referer}i&quot; &quot;%{User-Agent}i&quot;"/>
+      <Valve className="org.apache.catalina.valves.StuckThreadDetectionValve" threshold="60" />
+    </Engine>
+
+  </Service>
+</Server>

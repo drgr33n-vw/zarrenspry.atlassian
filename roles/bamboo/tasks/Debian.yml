@@ -2,6 +2,8 @@
 - name: Install prerequisites
   ansible.builtin.package:
     name:
-      - libc6
       - python-lxml
+      - git
+      - git-lfs
+      - libtcnative-1
     state: present

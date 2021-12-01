@@ -1,11 +1,54 @@
 ---
-bamboo_license_string: BLANK
+# Tomcat and Reverse Proxy Setting
+bamboo_tomcat_proxy_name: ""
+bamboo_tomcat_proxy_port: ""
+bamboo_tomcat_port: 8085
+bamboo_tomcat_scheme: http
+bamboo_tomcat_secure: false
+bamboo_tomcat_contextpath: ""
+bamboo_tomcat_management_port: 8007
+bamboo_tomcat_maxthreads: 150
+bamboo_tomcat_connection_timeout: 25
+bamboo_tomcat_enable_lookups: false
+bamboo_tomcat_protocol: HTTP/1.1
+bamboo_tomcat_acceptcount: 1000
+bamboo_tomcat_address: ""
+bamboo_tomcat_secret_required: false
+bamboo_tomcat_encryption_key: ""
+bamboo_tomcat_client_auth: ""
+bamboo_truststore:
+  file: ""
+  password: ""
+bamboo_tomcat_ssl:
+  enabled: false
+  protocol: TLSv1.2
+  cert_file: ""
+  key_file: ""
+  key_password: ""
+  keystore_file: ""
+  keystore_password: ""
+bamboo_tomcat_keystore: ""
+
+# Bamboo Version
 bamboo_version:
-  major: 1
-  minor: 2
+  major: 8
+  minor: 0
   patch: 4
+
+# Bamboo System / User
 bamboo_system_user: bamboo
-bamboo_installation_directory: /opt/bamboo
+bamboo_home_directory: /opt/bamboo
+bamboo_locale: en_GB.UTF-8
+bamboo_broker_uri: nio://0.0.0.0:54663
+bamboo_broker_client_uri: ""
+bamboo_build_number: 0
+bamboo_autologin_cookie_age: 1209600
+
+# Bamboo Database
+bamboo_database_pool:
+  min: 3
+  max: 100
+bamboo_database_timeout: 120000
 bamboo_database:
   bamboo:
     host: 127.0.0.1
@@ -15,37 +58,29 @@ bamboo_database:
     username: bamboo
     password: password
     enabled: true
-bamboo_locale: en_GB.UTF-8
+
+# Bamboo Webserver
 bamboo_webserver_port: 8085
+bamboo_webserver_baseurl: http://127.0.0.1 # ansible_ssh_host
 bamboo_webapp_context_path: /
-bamboo_java_heap_size:
-  init: 256
-  max: 512
-bamboo_jmxremote:
-  enabled: false
-  port: 4242
-  authenticate: true
-  ssl: false
-  password_file: conf/jmxremote.password
-  mbean_name: "wrapper:type=Java Service Wrapper Control"
-bamboo_logging_console:
-  format: PM
-  loglevel: INFO
-bamboo_logging_logfile:
-  name: "../logs/bamboo.log"
-  format: LPTM
-  loglevel: INFO
-  maxsize: 10m
-  maxfiles: 10
-bamboo_logging_syslog:
-  loglevel: INFO
-bamboo_console_title: Bamboo
+
+# Temurin / OpenJDK
 temurin_version:
   major: 11
   minor: 0
   patch: 13
   build: 8
-postgresql_java_version:
-  major: 42
-  minor: 3
-  patch: 1
+
+# Bamboo Preseed (Not supported until version 8.1)
+bamboo_pressed_security_token: ""
+bamboo_preseed_disable_agent_auth: false
+banboo_unattended_installation: false
+bamboo_license: ""
+bamboo_admin:
+  username: admin
+  password: password
+  full_name: Systems Administrator
+  email: systems.administrator@example.local
+bamboo_skip_config: false
+bamboo_import_option: clean
+bamboo_import_path: ""

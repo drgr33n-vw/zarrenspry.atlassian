@@ -1,0 +1,6 @@
+driverClassName=org.postgresql.Driver
+databaseUrl=jdbc:postgresql://{{ bamboo_database.bamboo.host }}:{{ bamboo_database.bamboo.port }}/{{ bamboo_database.bamboo.name }}
+userName={{ bamboo_database.bamboo.username }}
+password={{ bamboo_database.bamboo.password }}
+poolSize={{ bamboo_database_pool.max }}
+dialect=org.hibernate.dialect.PostgreSQL82Dialect

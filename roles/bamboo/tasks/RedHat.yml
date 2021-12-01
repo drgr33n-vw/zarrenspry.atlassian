@@ -2,6 +2,8 @@
 - name: Install prerequisites
   ansible.builtin.package:
     name:
-      - glibc.i686
       - python-lxml
+      - git
+      - tomcat-native
+      - git-lfs
     state: present

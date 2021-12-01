@@ -1,0 +1,25 @@
+db.type=postgresql
+db.user={{ bamboo_database.bamboo.username }}
+db.password={{ bamboo_database.bamboo.password }}
+db.url=jdbc:postgresql://{{ bamboo_database.bamboo.host }}:{{ bamboo_database.bamboo.port }}/{{ bamboo_database.bamboo.name }}
+bamboo.db.timeout = {{ bamboo_database_timeout }}
+bamboo.db.pool.min.size = {{ bamboo_database_pool.min }}
+bamboo.db.pool.max.size = {{ bamboo_database_pool.max }}
+
+bamboo.import.option={{ bamboo_import_option }}
+bamboo.import.path={{ bamboo_import_path }}
+
+bamboo.base.url={{ bamboo_webserver_baseurl }}:{{ bamboo_webserver_port }}{{ bamboo_webapp_context_path }}
+bamboo.license={{ bamboo_license | replace('\n', ' ')}}
+bamboo.broker.uri={{ bamboo_broker_uri }}
+{% if bamboo_broker_client_uri | length > 0 %}
+bamboo.client.broker.uri={{ bamboo_broker_client_uri }}
+{% endif %}
+
+bamboo.admin.username={{ bamboo_admin.username }}
+bamboo.admin.fullname={{ bamboo_admin.full_name }}
+bamboo.admin.password={{ bamboo_admin.password }}
+bamboo.admin.email={{ bamboo_admin.email }}
+{% if bamboo_pressed_security_token | length > 0 %}
+bamboo.agent.security.token = {{ bamboo_pressed_security_token }}
+{% endif %}

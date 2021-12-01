@@ -4,9 +4,14 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-PIDFile={{ bamboo_installation_directory }}/wrapper/bamboo.pid
-ExecStart={{ bamboo_installation_directory }}/wrapper/start-bamboo start
-ExecStop={{ bamboo_installation_directory }}/wrapper/start-bamboo stop
+Environment=CATALINA_PID={{ bamboo_home_directory }}/bin/Catalina.pid
+Environment=JAVA_HOME={{ bamboo_home_directory }}/jdk
+{% if banboo_unattended_installation %}
+Environment=JVM_SUPPORT_RECOMMENDED_ARGS=-Dbamboo.setup.settings={{ bamboo_home_directory }}/unattended-setup.properties
+{% endif %}
+PIDFile={{ bamboo_home_directory }}/bin/Catalina.pid
+ExecStart={{ bamboo_home_directory }}/bin/start-bamboo.sh
+ExecStop={{ bamboo_home_directory }}/bin/stop-bamboo.sh
 SuccessExitStatus=143
 User={{ bamboo_system_user }}
 Group={{ bamboo_system_user }}
