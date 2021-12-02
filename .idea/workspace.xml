@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="84226280-4503-423d-928c-105693b19ec5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/roles/bamboo/templates/bamboo-init.properties.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/bamboo/templates/postgresql.properties.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/bamboo/templates/seraph-config.xml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/bamboo/templates/server.xml.j2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/roles/bamboo/templates/unattended-setup.properties.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/defaults/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/defaults/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/tasks/Debian.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/tasks/Debian.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/tasks/RedHat.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/tasks/RedHat.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/roles/bamboo/tasks/main.yml" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/tasks/main.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/templates/bamboo.cfg.xml.j2" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/templates/bamboo.cfg.xml.j2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/roles/bamboo/templates/bamboo.service.j2" beforeDir="false" afterPath="$PROJECT_DIR$/roles/bamboo/templates/bamboo.service.j2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +36,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/roles/bamboo" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -32,6 +44,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/roles/bamboo" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -68,6 +84,7 @@
       <option name="presentableId" value="Default" />
       <updated>1638207115447</updated>
       <workItem from="1638207116601" duration="1366000" />
+      <workItem from="1638371454436" duration="3670000" />
     </task>
     <servers />
   </component>

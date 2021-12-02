@@ -95,6 +95,16 @@
     extra_opts:
       - "--strip-components=1"
 
+- name: Check if bamboo.cfg.xml already exists
+  ansible.builtin.stat:
+    path: "{{ bamboo_home_directory }}/bamboo.cfg.xml"
+  register: _bamboo_cfg
+
+- name: Set skip configuration if bamboo.cfg.xml already exists
+  ansible.builtin.set_fact:
+    bamboo_skip_config: true
+  when: _bamboo_cfg.stat.exists
+
 - name: Configure Bamboo
   become: true
   become_user: "{{ bamboo_system_user }}"
@@ -121,53 +131,25 @@
       disabled: false
     - name: unattended-setup.properties
       dest: "/"
-      disabled: true
+      disabled: "{{ false if (bamboo_version.major >= 8 and bamboo_version.minor >= 1) else true }}"
   loop_control:
     label: "{{ _template.name }}"
     loop_var: _template
   notify: restart bamboo
   when: not _template.disabled
 
-- name: Create license string if required
-  block:
-    - name: Check if bamboo.cfg.xml already exists
-      ansible.builtin.stat:
-        path: "{{ bamboo_home_directory }}/bamboo.cfg.xml"
-      register: _bamboo_cfg
-
-    - name: Update license if required
-      become: true
-      become_user: "{{ bamboo_system_user }}"
-      community.general.xml:
-        path: "{{ bamboo_home_directory }}/bamboo.cfg.xml"
-        xpath: /application-configuration/properties/property[@name="license.string"]
-        value: "{{ bamboo_license | replace('\n', ' ') }}"
-      when: _bamboo_cfg.stat.exists
-      notify: restart bamboo
-      no_log: true
-  when: bamboo_version.major == 8 and bamboo_version.minor == 1
-
-- name: Create additional required directoryies
+- name: Update license if required
   become: true
   become_user: "{{ bamboo_system_user }}"
-  ansible.builtin.file:
-    path: "{{ bamboo_home_directory }}/{{ _path }}"
-    state: directory
-    owner: "{{ bamboo_system_user }}"
-    group: "{{ bamboo_system_user }}"
-  loop:
-    - shared
-    - shared/configuration
-    - shared/index
-    - shared/builds
-    - shared/artifacts
-    - shared/repository-specs
-    - local-working-dir
-    - temp
-    - repository-specs
-  loop_control:
-    label: "{{ _path }}"
-    loop_var: _path
+  community.general.xml:
+    path: "{{ bamboo_home_directory }}/bamboo.cfg.xml"
+    xpath: /application-configuration/properties/property[@name="license.string"]
+    value: "{{ bamboo_license | replace('\n', ' ') }}"
+  notify: restart bamboo
+  no_log: true
+  when:
+    - bamboo_version.major == 8 and bamboo_version.minor == 1
+    - _bamboo_cfg.stat.exists
 
 - name: Create the Bamboo systemd service
   become: true
