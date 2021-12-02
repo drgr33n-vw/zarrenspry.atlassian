@@ -1,5 +1,6 @@
 ---
 - name: Install prerequisites
+  become: true
   ansible.builtin.package:
     name:
       - python-lxml
